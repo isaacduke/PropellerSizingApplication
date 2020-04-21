@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="scrollPane" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="971.0" prefWidth="1723.0" snapToPixel="false" stylesheets="@../../hornStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dukecompany.controllers.ScatterChartController">
+   <children>
+      <ScrollPane layoutX="486.0" layoutY="48.0" minWidth="-Infinity" pannable="true" pickOnBounds="false" prefHeight="887.0" prefViewportHeight="1320.0" prefViewportWidth="426.0" prefWidth="1154.0" stylesheets="@../../hornStyle.css">
+         <content>
+            <AnchorPane prefHeight="3222.0" prefWidth="1128.0" styleClass="AnchorPane" stylesheets="@../../hornStyle.css">
+               <children>
+                  <GridPane gridLinesVisible="true" layoutX="45.0" layoutY="24.0" prefHeight="3200.0" prefWidth="1054.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="0.0" prefHeight="400.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ScatterChart fx:id="motorEfficiencyScatter" layoutX="81.0" layoutY="385.0" stylesheets="@../../hornStyle.css" title="Motor Efficiency" GridPane.rowIndex="1">
+                           <xAxis>
+                              <NumberAxis label="RPM" side="BOTTOM" fx:id="x1" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis fx:id="y1" autoRanging="false" label="EtaM" side="LEFT" />
+                           </yAxis>
+                        </ScatterChart>
+                         <ScatterChart id="torque" fx:id="grossThrustScatter" layoutX="587.0" layoutY="24.0" stylesheets="@../../hornStyle.css" title="Gross Thrust [lbf]" GridPane.columnIndex="1">
+                             <xAxis>
+                                 <NumberAxis label="RPM" side="BOTTOM" fx:id="x" />
+                             </xAxis>
+                             <yAxis>
+                                 <NumberAxis fx:id="y" label="Tg" side="LEFT" />
+                             </yAxis>
+                         </ScatterChart>
+                        <ScatterChart id="torque" fx:id="propellerEfficiencyScatter" layoutX="56.0" layoutY="992.0" stylesheets="@../../hornStyle.css" title="Propeller Efficiency " GridPane.rowIndex="2">
+                           <xAxis>
+                              <NumberAxis label="RPM" side="BOTTOM" fx:id="x2" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis fx:id="y2" autoRanging="false" label="EtaP" minorTickCount="1" side="LEFT" tickUnit="0.1" upperBound="1.0" />
+                           </yAxis>
+                        </ScatterChart>
+                        <ScatterChart id="40 kts" fx:id="electricScatter" layoutX="31.0" layoutY="29.0" styleClass="ScatterChart" stylesheets="@../../hornStyle.css" title="Electrical">
+                          <xAxis>
+                            <NumberAxis label="A" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" label="V" side="LEFT" />
+                          </yAxis>
+                        </ScatterChart>
+                        <ScatterChart fx:id="grossThrustTorqueScatter" layoutX="616.0" layoutY="410.0" stylesheets="@../../hornStyle.css" title="Gross Thrust vs Torque" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <xAxis>
+                              <NumberAxis label="Q" side="BOTTOM" fx:id="x11" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis fx:id="y11" label="Tg" side="LEFT" />
+                           </yAxis>
+                        </ScatterChart>
+                        <ScatterChart fx:id="torqueScatter" stylesheets="@../../hornStyle.css" title="Torque" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                          <xAxis>
+                            <NumberAxis label="RPM" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" label="Q" side="LEFT" />
+                          </yAxis>
+                        </ScatterChart>
+                        <ScatterChart fx:id="propellerEfficiencyAlphaScatter" prefHeight="400.0" prefWidth="400.0" stylesheets="@../../hornStyle.css" title="Propeller Efficiency (Alpha)" GridPane.rowIndex="3">
+                          <xAxis>
+                            <NumberAxis label="alpha (deg)" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" autoRanging="false" label="EtaP" minorTickCount="1" side="LEFT" tickUnit="0.1" upperBound="1.0" />
+                          </yAxis>
+                        </ScatterChart>
+                        <ScatterChart fx:id="liftCurveTgScatter" stylesheets="@../../hornStyle.css" title="Lift Curve (Tg &gt; 0) " GridPane.columnIndex="1" GridPane.rowIndex="3">
+                          <xAxis>
+                            <NumberAxis label="alpha (deg)" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" label="CLdisk" side="LEFT" />
+                          </yAxis>
+                        </ScatterChart>
+                        <ScatterChart fx:id="propellerEfficiencyLDScatter" stylesheets="@../../hornStyle.css" title="Propeller Efficiency (L/D)" GridPane.rowIndex="4">
+                          <xAxis>
+                            <NumberAxis label="L/D" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" autoRanging="false" label="EtaP" minorTickCount="1" side="LEFT" tickUnit="0.1" upperBound="1.0" />
+                          </yAxis>
+                        </ScatterChart>
+                        <ScatterChart fx:id="dragPolarScatter" stylesheets="@../../hornStyle.css" title="Drag Polar (Tg &gt; 0)" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                          <xAxis>
+                            <NumberAxis label="CLdisk" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" label="CLdisk" side="LEFT" />
+                          </yAxis>
+                        </ScatterChart>
+                        <ScatterChart fx:id="propellerEfficiencyRnScatter" stylesheets="@../../hornStyle.css" title="Propeller Efficiency (Rn)" GridPane.rowIndex="5">
+                          <xAxis>
+                            <NumberAxis label="Rn" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" autoRanging="false" label="EtaM" minorTickCount="1" side="LEFT" tickUnit="0.1" upperBound="1.0" />
+                          </yAxis>
+                        </ScatterChart>
+                        <ScatterChart fx:id="L_DScatter" stylesheets="@../../hornStyle.css" title="L/D (Tg &gt; 0)" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                          <xAxis>
+                            <NumberAxis label="alpha (deg)" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" label="L/D" side="LEFT" />
+                          </yAxis>
+                        </ScatterChart>
+                        <ScatterChart fx:id="CDfRnScatter" stylesheets="@../../hornStyle.css" title="CD f(Rn) (Tg &gt; 0)" GridPane.rowIndex="6">
+                          <xAxis>
+                            <NumberAxis label="Rn" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" label="CDdisk" side="LEFT" />
+                          </yAxis>
+                        </ScatterChart>
+                        <ScatterChart fx:id="linearDragPloarScatter" stylesheets="@../../hornStyle.css" title="Linear Drag Ploar (Tg &gt; 0)" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                          <xAxis>
+                            <NumberAxis label="CDdisk" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" label="(CLdisk)^2" side="LEFT" />
+                          </yAxis>
+                        </ScatterChart>
+                        <ScatterChart fx:id="TgFqScatter" stylesheets="@../../hornStyle.css" title="Tg/Fq vs Alpha (Alpha &gt;= -3 deg)" GridPane.rowIndex="7">
+                          <xAxis>
+                            <NumberAxis label="alpha (deg)" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" label="Tg/Fq" side="LEFT" />
+                          </yAxis>
+                        </ScatterChart>
+                     </children>
+                  </GridPane>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="CROSSHAIR" />
+               </cursor>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <MenuBar prefHeight="29.0" prefWidth="1725.0" styleClass="MenuBar" stylesheets="@../../hornStyle.css">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane layoutX="13.0" layoutY="45.0" prefHeight="937.0" prefWidth="200.0" stylesheets="@../../hornStyle.css">
+         <children>
+            <GridPane gridLinesVisible="true" layoutX="-27.0" layoutY="44.0" prefHeight="102.0" prefWidth="200.0" stylesheets="@../../hornStyle.css" AnchorPane.bottomAnchor="835.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="485.7177429199219" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="625.0" minHeight="0.0" prefHeight="34.35700988769531" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="796.0" minHeight="10.0" prefHeight="39.64299011230469" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="796.0" minHeight="10.0" prefHeight="32.42865753173828" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label stylesheets="@../../hornStyle.css" text="Label" GridPane.rowIndex="1" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label stylesheets="@../../hornStyle.css" text="Label" GridPane.rowIndex="2" />
+                  <Label stylesheets="@../../hornStyle.css" text="Label" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+            <Button layoutX="71.0" layoutY="118.0" mnemonicParsing="false" text="Button" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
